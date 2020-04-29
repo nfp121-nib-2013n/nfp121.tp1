@@ -45,7 +45,26 @@ public class AuditeurCNAM {
      *         homonymes...
      */
     public String login() {
-        return "";// à compléter
+        if (this.nom !=null && this.prenom !=null){
+            String login = "";
+            
+            login += nom().length() > 6 ? nom().substring(0,6) : nom();
+            login += "_";
+            login += prenom().length() > 1 ? prenom().substring(0,1) : prenom();
+            
+            login = login.toLowerCase();
+            login = login.replaceAll("é", "e");
+            login = login.replaceAll("è", "e");
+            login = login.replaceAll("ê", "e");
+            login = login.replaceAll("à", "a");
+            login = login.replaceAll("â", "a");
+            /** Remplacer tous les caractères qui sont ni lettre ni chiffre
+             *  par un "_" 
+             */
+            login = login.replaceAll("[^a-z0-9]", "_");
+            return login;
+        }
+        return "Attention ! Le nom et le prénom ne peuvent pas être null";
     }
 
     /**
@@ -54,7 +73,7 @@ public class AuditeurCNAM {
      * @return son nom
      */
     public String nom() {
-        return null;// à compléter
+        return this.nom;
     }
 
     /**
@@ -63,7 +82,7 @@ public class AuditeurCNAM {
      * @return son prénom
      */
     public String prenom() {
-        return null;// à compléter
+        return this.prenom;
     }
 
     /**
@@ -72,7 +91,7 @@ public class AuditeurCNAM {
      * @return son matricule
      */
     public String matricule() {
-        return null;// à compléter
+        return this.matricule;
     }
 
     /**

@@ -19,7 +19,8 @@ public class Picture {
     private Square wall;
     private Square window;
     private Triangle roof;
-    private Circle sun;
+    private Circle sun, sun2;
+    private boolean TerreFixe;
 
     /**
      * Constructor for objects of class Picture
@@ -50,11 +51,18 @@ public class Picture {
         roof.makeVisible();
 
         sun = new Circle();
-        sun.changeColor("yellow");
+        sun.changeColor("blue");
         sun.moveHorizontal(180);
         sun.moveVertical(-10);
         sun.changeSize(60);
         sun.makeVisible();
+        
+        sun2 = new Circle();
+        sun2.changeColor("yellow");
+        sun2.moveHorizontal(-15);
+        sun2.moveVertical(-10);
+        sun2.changeSize(60);
+        sun2.makeVisible();
     }
 
     /**
@@ -67,6 +75,7 @@ public class Picture {
             window.changeColor("white");
             roof.changeColor("black");
             sun.changeColor("black");
+            sun2.changeColor("black");
         }
     }
 
@@ -79,8 +88,30 @@ public class Picture {
             wall.changeColor("red");
             window.changeColor("black");
             roof.changeColor("green");
-            sun.changeColor("yellow");
+            sun.changeColor("blue");
+            sun2.changeColor("yellow");
         }
     }
+    
+    /**
+     * Lorsque la terre est fixe, le soleil bleu se couche
+     */
+    public void seCoucher(){
+        if(!TerreFixe){
+            TerreFixe = true;
+            sun.slowMoveVertical(250);
+        }
+    }
+    
+    /**
+     * Lorsque la terre n'est pas fixe, le soleil bleu se lève
+     */
+    public void seLever(){
+        if(TerreFixe){
+            TerreFixe = false;
+            sun.slowMoveVertical(-250);
+        }
+    }
+
 
 }
